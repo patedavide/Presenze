@@ -3,13 +3,13 @@ import java.util.*;
 
 public class Main {
 
-    public HashMap<Key, Integer> presenze;
+    public HashMap<String, Integer> presenze;
 
     public Main(String key, int value){
         presenze = new HashMap<>();
     }
 
-    public void aggiungiStudente(Key nome){
+    public void aggiungiStudente(String nome){
         if(presenze.containsKey(nome)){
             System.out.println("Studente già presente: " + nome);
         }else {
@@ -18,11 +18,11 @@ public class Main {
         }
     }
 
-    public void registraPresenze(Key nome){
+    public void registraPresenze(String nome){
         if (!presenze.containsKey(nome)){
             System.out.println("Studente non trovato: " + nome);
         }else {
-            int x= presenze.put(nome, presenze.get(nome) +1);
+            presenze.put(nome, presenze.get(nome) +1);
             System.out.println("Presenze registrata per " + nome);
         }
     }
@@ -32,10 +32,25 @@ public class Main {
             System.out.println("Nessuna presenza registrata");
         }
         System.out.println("PRESENZE");
-        for (Map.Entry<Key, Integer> entry : presenze.entrySet()){
+        for (Map.Entry<String, Integer> entry : presenze.entrySet()){
             System.out.println(entry.getKey() + ": " + entry.getValue() + " presenze");
         }
     }
 
+    public void cercaStudente(String nome){
+        if (!presenze.containsKey(nome)){
+            System.out.println("Studente non trovato: " + nome);
+        }else {
+            System.out.println(nome + " ha" + presenze.get(nome));
+        }
+    }
 
+
+    public void studentePiuPresente(){
+
+    }
+
+    public static void main (String[] args){
+
+    }
 }

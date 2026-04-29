@@ -46,11 +46,42 @@ public class Main {
     }
 
 
-    public void studentePiuPresente(){
+    public void studentePiuPresente() {
+        if (presenze.isEmpty()) {
+            System.out.println("Nessuno studente registrato");
+            return;
+        }
 
+        String migliore = null;
+        int max = -1;
+
+        for (Map.Entry<String, Integer> entry : presenze.entrySet()) {
+            if (entry.getValue() > max) {
+                max = entry.getValue();
+                migliore = entry.getKey();
+            }
+        }
+
+        System.out.println("Studente più presente: " + migliore + " con " + max + " presenze");
     }
 
-    public static void main (String[] args){
-
+    public static void main(String[] args) {
+        aggiungiStudente("Davide");
+        aggiungiStudente("Giacomo");
+        aggiungiStudente("Federico");
+        aggiungiStudente("Giacomo");       // duplicato
+        registraPresenze("Davide");
+        registraPresenze("Davide");
+        registraPresenze("Davide");
+        registraPresenze("Giacomo");
+        registraPresenze("Giacomo");
+        registraPresenze("Federico");
+        registraPresenze("Brahim");         // non esiste
+        stampaPresenze();
+        System.out.println("\nRICERCA STUDENTE:");
+        System.out.println("Presenze di Davide: " + cercaStudente("Davide"));
+        System.out.println("Presenze di Brahim: " + cercaStudente("Brahim"));
+        System.out.println();
+        studentePiuPresente();
     }
 }
